@@ -1,0 +1,34 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "cSpell.words": [
+    "Elgersma",
+    "launchconfiguration",
+    "managedactions",
+    "NLABK",
+    "PKCE",
+    "platformupdate",
+    "preprod",
+    "upsellservice",
+    "visitnote",
+    "xmlbuilder"
+  ],
+  "git.sshCommand": "ssh -i ~/.ssh/id_rsa",
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "java.compile.nullAnalysis.mode": "disabled",
+  "slidev.include": [
+    "**/slides.md",
+    "assets/presentation/AI-Agents-strategy-and-exploration.md"
+  ]
+}

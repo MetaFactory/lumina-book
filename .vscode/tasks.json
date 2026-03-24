@@ -1,0 +1,89 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "update-common:beta",
+      "path": "web",
+      "problemMatcher": [],
+      "label": "Update Common Beta",
+      "detail": "npm install @metafactory/metafactory-frontend-common@beta",
+      "icon": {
+        "id": "terminal",
+        "color": "terminal.ansiBlue"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "update-common:latest",
+      "path": "web",
+      "problemMatcher": [],
+      "label": "Update Common Latest",
+      "detail": "npm install @metafactory/metafactory-frontend-common@latest",
+      "icon": {
+        "id": "terminal",
+        "color": "terminal.ansiBlue"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "dev",
+      "path": "api",
+      "problemMatcher": [],
+      "label": "Run Api",
+      "detail": "npm: dev - api",
+      "icon": {
+        "id": "gear",
+        "color": "terminal.ansiGreen"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "dev",
+      "path": "web",
+      "problemMatcher": [],
+      "label": "Run Web",
+      "detail": "npm: dev - web",
+      "icon": {
+        "id": "play",
+        "color": "terminal.ansiGreen"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "release",
+      "path": "devops",
+      "problemMatcher": [],
+      "detail": "npm: release - devops",
+      "label": "Release",
+      "icon": {
+        "id": "cloud-upload",
+        "color": "terminal.ansiGreen"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "setup:local",
+      "path": "devops",
+      "problemMatcher": [],
+      "detail": "npm setup local",
+      "label": "Setup Local",
+      "icon": {
+        "id": "cloud-upload",
+        "color": "terminal.ansiCyan"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "dummy-smtp",
+      "path": "api",
+      "problemMatcher": [],
+      "detail": "npm run dummy-smtp",
+      "label": "Dummy SMTP",
+      "icon": {
+        "id": "mail",
+        "color": "terminal.ansiMagenta"
+      }
+    }
+  ]
+}

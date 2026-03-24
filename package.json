@@ -1,0 +1,15 @@
+{
+  "name": "lumina-book",
+  "title": "LuminaBook",
+  "version": "1.0.0",
+  "private": false,
+  "workspaces": [
+    "api",
+    "web"
+  ],
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}
