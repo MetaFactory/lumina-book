@@ -1,0 +1,89 @@
+openapi: 3.0.0
+info:
+  title: LuminaBook API
+  version: 1.0.0
+
+paths:
+  /ai/schedule:
+    post:
+      summary: Create meeting from natural language
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [prompt]
+              properties:
+                prompt:
+                  type: string
+      responses:
+        "200":
+          description: Suggested time slots
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slots:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        startTime:
+                          type: string
+                        endTime:
+                          type: string
+
+  /events:
+    post:
+      summary: Create event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [startTime, endTime]
+              properties:
+                title:
+                  type: string
+                startTime:
+                  type: string
+                endTime:
+                  type: string
+      responses:
+        "201":
+          description: Event created
+
+  /booking/{slug}:
+    get:
+      summary: Get available slots
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Available slots
+
+  /booking/{slug}/reserve:
+    post:
+      summary: Book a slot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [startTime, email]
+              properties:
+                startTime:
+                  type: string
+                email:
+                  type: string
+      responses:
+        "201":
+          description: Booking confirmed

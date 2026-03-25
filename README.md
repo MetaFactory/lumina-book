@@ -18,6 +18,6 @@ This entire project was developed from scratch using AI assistance (planning →
 
 Built as a demonstration of end-to-end AI-assisted software development.
 
-Tech stack: [Add your stack here — e.g. Next.js / Spring Boot / TypeScript / PostgreSQL / OpenAI/Claude + LangChain, etc.]
+Tech stack: JHipster Java (backend), Spring Boot, TypeScript, Angular (fronend), PostgreSQL
 
 ⭐ Star us if you're exploring AI-assisted development or modern scheduling tools!
