@@ -1,0 +1,47 @@
+{
+  "annotations": {
+    "changelogDate": "20260331145851"
+  },
+  "applications": ["LuminaBook"],
+  "fields": [
+    {
+      "fieldName": "guestEmail",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "guestName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startTime",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "endTime",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "BookingStatus",
+      "fieldValues": "PENDING,CONFIRMED,CANCELLED"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Booking",
+  "relationships": [
+    {
+      "otherEntityField": "slug",
+      "otherEntityName": "bookingPage",
+      "relationshipName": "bookingPage",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

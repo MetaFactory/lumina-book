@@ -1,0 +1,21 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "oauth2",
+    "baseName": "LuminaBook",
+    "buildTool": "maven",
+    "cacheProvider": "ehcache",
+    "devDatabaseType": "postgresql",
+    "enableTranslation": false,
+    "entities": ["Event", "BookingPage", "Booking", "CalendarIntegration"],
+    "jhipsterVersion": "9.0.0",
+    "lastLiquibaseTimestamp": 1774969191000,
+    "monorepository": true,
+    "packageName": "com.metafactory.luminabook",
+    "prodDatabaseType": "postgresql",
+    "serverPort": "8080",
+    "skipClient": true,
+    "skipCommitHook": true,
+    "testFrameworks": ["cypress"]
+  }
+}

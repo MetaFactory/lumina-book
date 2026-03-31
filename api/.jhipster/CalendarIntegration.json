@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20260331145951"
+  },
+  "applications": ["LuminaBook"],
+  "fields": [
+    {
+      "fieldName": "provider",
+      "fieldType": "CalendarProvider",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "GOOGLE,OUTLOOK"
+    },
+    {
+      "fieldName": "accessToken",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "refreshToken",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "externalCalendarId",
+      "fieldType": "String"
+    }
+  ],
+  "name": "CalendarIntegration",
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no"
+}
