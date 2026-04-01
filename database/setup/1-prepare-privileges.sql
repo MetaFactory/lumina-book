@@ -1,3 +1,5 @@
+-- Apply this, if we need to restrict user lumina_book to only access data (not schema migrations)
+
 -- 5️⃣ Lock down public schema from PUBLIC
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
 
