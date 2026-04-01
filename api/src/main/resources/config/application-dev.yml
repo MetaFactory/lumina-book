@@ -21,6 +21,9 @@ logging:
     com.metafactory.luminabook: DEBUG
 
 spring:
+  docker:
+    compose:
+      enabled: false
   devtools:
     restart:
       enabled: true
@@ -32,7 +35,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/LuminaBook
+    url: jdbc:postgresql://localhost:5432/lumina_book
+    username: lumina_book
+    password: 123
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -48,6 +53,10 @@ server:
   port: 8080
   # make sure requests the proxy uri instead of the server one
   forward-headers-strategy: native
+  tomcat:
+    connection-timeout: 5000
+    socket:
+      so-linger: -1
 
 # ===================================================================
 # JHipster specific properties
