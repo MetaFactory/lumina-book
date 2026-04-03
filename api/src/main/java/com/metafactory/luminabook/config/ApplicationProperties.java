@@ -13,10 +13,20 @@ public class ApplicationProperties {
 
     private final Liquibase liquibase = new Liquibase();
 
+    private String frontendUrl;
+
     // jhipster-needle-application-properties-property
 
     public Liquibase getLiquibase() {
         return liquibase;
+    }
+
+    public String getFrontendUrl() {
+        return frontendUrl;
+    }
+
+    public void setFrontendUrl(String frontendUrl) {
+        this.frontendUrl = frontendUrl;
     }
 
     // jhipster-needle-application-properties-property-getter
