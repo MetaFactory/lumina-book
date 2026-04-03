@@ -13,6 +13,7 @@ import { ApiService, EntityService } from '../../services';
 import { GeneralService, GeneralState } from '../../services/general';
 import {
    Entity,
+   EntityId,
    EntityViewMode,
    FormAction,
    FormActionContext,
@@ -47,7 +48,7 @@ export class EntityPanelComponent implements OnChanges {
    loadingStatus: ProgressStatus = 'idle';
    selectedTab: string = '';
    entity: Entity | null = null;
-   entityId: number | null = null;
+   entityId: EntityId | null = null;
    editEntity: Entity | null = null;
    isConfirmDeleteOpen = false;
    autoRefreshInterval?: any;
@@ -113,7 +114,9 @@ export class EntityPanelComponent implements OnChanges {
             throw 'id expected in EntityPanelTypicalPageComponent path: ' + this.path;
 
          const isCreateMode = parts[parts.length - 1] === 'new';
-         this.entityId = isCreateMode ? null : Number(parts[parts.length - 1]);
+         const rawId = parts[parts.length - 1];
+         const num = Number(rawId);
+         this.entityId = isCreateMode ? null : (Number.isFinite(num) ? num : rawId);
          await this.switchMode(isCreateMode ? 'create' : 'view');
 
          if (this.schema.autoRefresh && !this.autoRefreshInterval) {

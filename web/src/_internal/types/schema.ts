@@ -4,6 +4,7 @@ import type {
    DataTableSorting,
    Entity,
    EntityFilters,
+   EntityId,
    EntityListDto,
    EntityListItemDto,
    SelectOption
@@ -434,7 +435,7 @@ export type FormActionContext = {
    /**
     * Holds the data table selected entity Ids
     */
-   selections?: number[];
+   selections?: EntityId[];
 
    /**
     * Holds the data table items
@@ -524,7 +525,7 @@ export type FormSchemaEntityPanel = FormSchema & {
    /**
     * onEntityLoaded hook will be called when EntityService.getEntity is called for processing the received data in custom scenarios
     */
-   onEntityLoaded?(params: { data: unknown; entityId: number }): Promise<Entity>;
+   onEntityLoaded?(params: { data: unknown; entityId: EntityId }): Promise<Entity>;
 
    onEntityPanelSchemaUpdate?: (
       cn: FormActionContext,
@@ -619,7 +620,7 @@ export interface IEntityService {
 
    removeNullOrEmptyAttributes(obj: any): void;
 
-   getEntity<T extends Entity>(id: number, params: GetEntityArgs): Promise<T>;
+   getEntity<T extends Entity>(id: EntityId, params: GetEntityArgs): Promise<T>;
 
    /**
     * Fetches the entity to be edited by its ID.
@@ -633,9 +634,9 @@ export interface IEntityService {
     *
     * @see [Entity Service Implementation](https://github.com/MetaFactory/metafactory-frontend-common/blob/main/src/services/entity/entity.service.ts#L193-L205)
     */
-   getEditEntity<T extends Entity>(id: number, params: GetEntityArgs): Promise<T>;
+   getEditEntity<T extends Entity>(id: EntityId, params: GetEntityArgs): Promise<T>;
 
-   getDuplicatedEntity<T extends Entity>(id: number, params: GetEntityArgs): Promise<T>;
+   getDuplicatedEntity<T extends Entity>(id: EntityId, params: GetEntityArgs): Promise<T>;
 
    getNewEntity<T extends Entity = Entity>(params: GetEntityArgs): Promise<T>;
 
@@ -675,7 +676,7 @@ export interface IEntityService {
    bulkEdit(
       value: unknown,
       editFields: FieldSchema[],
-      selections: number[],
+      selections: EntityId[],
       entityName: string
    ): Promise<void>;
 
@@ -683,7 +684,7 @@ export interface IEntityService {
 
    upsertRaw<T = unknown>(value: T): Promise<T>;
 
-   deleteEntity(id: number): Promise<void>;
+   deleteEntity(id: EntityId): Promise<void>;
 
    getEntityOptions(path: string, entityName: string, value: string): void;
 

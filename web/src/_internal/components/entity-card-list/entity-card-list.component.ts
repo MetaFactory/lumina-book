@@ -7,7 +7,7 @@ import {
    Output,
    ViewChild
 } from '@angular/core';
-import { Entity, FieldSchema, FormAction } from '../../types';
+import { Entity, EntityId, FieldSchema, FormAction } from '../../types';
 import { getFieldSingleRawValue } from '../../utils';
 
 @Component({
@@ -22,7 +22,7 @@ export class EntityCardListComponent implements AfterViewInit {
    @Input() selectedItem: any = null;
    @Input() canSelect: boolean = false;
    @Output() public onSelectItem = new EventEmitter<any>();
-   @Output() public selectionChange = new EventEmitter<number[]>();
+   @Output() public selectionChange = new EventEmitter<EntityId[]>();
    @Input() itemActions: FormAction[] = [];
    @Output() public onItemAction = new EventEmitter<{ item: Entity; action: FormAction }>();
    @ViewChild('list', { static: false }) list!: ElementRef<HTMLUListElement>;

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import type { EntityFiltersDto, EntityListDto, EntityListItemDto } from '../../types';
+import type { EntityFiltersDto, EntityId, EntityListDto, EntityListItemDto } from '../../types';
 import { ApiService } from '../api.service';
 import { ConfigService } from '../config-service';
 
@@ -20,9 +20,9 @@ export class EntityApi extends ApiService {
       signal?: AbortSignal
    ) => this.request<EntityListDto<ITEM>>(this.entityPath + query, { signal });
 
-   getEntity = <T>(id: number, url?: string) => this.request<T>(url || `${this.entityPath}/` + id);
+   getEntity = <T>(id: EntityId, url?: string) => this.request<T>(url || `${this.entityPath}/` + id);
 
-   getEdit = <T>(id: number, url?: string) =>
+   getEdit = <T>(id: EntityId, url?: string) =>
       this.request<T>(url || `${this.entityPath}/edit/${id}`);
 
    getNew = <T>(url?: string) => this.request<T>(url || `${this.entityPath}/edit/new`);
@@ -51,7 +51,7 @@ export class EntityApi extends ApiService {
          method: 'POST'
       });
 
-   deleteEntity = (id: number) =>
+   deleteEntity = (id: EntityId) =>
       this.request<unknown>(`${this.entityPath}/${id}`, {
          method: 'DELETE'
       });

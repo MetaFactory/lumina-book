@@ -63,14 +63,14 @@ const fields: FieldSchema[] = [
 ];
 
 export const userDataTableSchema = normalizeDataTableFormSchema({
-   title: 'Accounts',
+   title: 'Users',
    serviceName: 'user',
    fields: listFields,
    canInsert: false
 });
 
 export const userEntityViewSchema = normalizeEntityPanelSchema({
-   title: 'Account',
+   title: 'User',
    serviceName: 'user',
    fields: fields,
    canEdit: false,

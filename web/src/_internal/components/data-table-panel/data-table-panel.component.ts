@@ -22,6 +22,7 @@ import { GeneralService, GeneralState } from '../../services/general';
 import type {
    DataTableSorting,
    Entity,
+   EntityId,
    EntityListItemDto,
    FormAction,
    FormSchemaDataTable,
@@ -57,10 +58,10 @@ export class DataTablePanelComponent implements OnDestroy, OnChanges, OnInit {
    loadingStatus: ProgressStatus = 'idle';
    emptyDataMessage: string = ''; // When there is no data or filtering required
    autoRefreshInterval?: any;
-   selections: number[] = [];
+   selections: EntityId[] = [];
    itemActions: FormAction[] = [];
    refreshMainPanelSubscription?: Subscription;
-   itemIdInPath?: number;
+   itemIdInPath?: EntityId;
    currentPath?: string;
    schema!: FormSchemaDataTable;
    private abortController: AbortController | null = null;
@@ -81,7 +82,11 @@ export class DataTablePanelComponent implements OnDestroy, OnChanges, OnInit {
 
       const currentUrlTree = this.router.parseUrl(this.location.path());
       const query = { ...currentUrlTree.queryParams };
-      this.itemIdInPath = Number(query[QUERY_PARAM_SELECT]);
+      const rawId = query[QUERY_PARAM_SELECT];
+      if (rawId != null) {
+         const num = Number(rawId);
+         this.itemIdInPath = Number.isFinite(num) ? num : rawId;
+      }
    }
 
    ngOnInit(): void {
@@ -222,7 +227,7 @@ export class DataTablePanelComponent implements OnDestroy, OnChanges, OnInit {
       this.setSelectQueryParam(item?.id);
    }
 
-   setSelectQueryParam(itemId?: number | null) {
+   setSelectQueryParam(itemId?: EntityId | null) {
       const currentUrlTree = this.router.parseUrl(this.location.path(true));
       const query = { ...currentUrlTree.queryParams };
 

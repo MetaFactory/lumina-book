@@ -8,6 +8,7 @@ import { QUERY_PARAM_FILTER } from '../../constants';
 import {
    ApiCallParams,
    Entity,
+   EntityId,
    EntityListDto,
    EntityListItemDto,
    FieldSchema,
@@ -186,7 +187,7 @@ export class EntityService<STATE extends CommonState = CommonState> implements I
       return newObj;
    }
 
-   async getEntity<T extends Entity>(id: number, params?: GetEntityArgs): Promise<T> {
+   async getEntity<T extends Entity>(id: EntityId, params?: GetEntityArgs): Promise<T> {
       const entity = (await this.api.getEntity(id, params?.url)) as unknown as T;
 
       if (params?.noNormalization) {
@@ -202,7 +203,7 @@ export class EntityService<STATE extends CommonState = CommonState> implements I
       }
    }
 
-   async getEditEntity<T extends Entity>(id: number, params?: GetEntityArgs): Promise<T> {
+   async getEditEntity<T extends Entity>(id: EntityId, params?: GetEntityArgs): Promise<T> {
       const entity = (await this.api.getEdit(id, params?.url)) as unknown as T;
       if (params?.noNormalization) {
          return entity;
@@ -216,7 +217,7 @@ export class EntityService<STATE extends CommonState = CommonState> implements I
       }
    }
 
-   async getDuplicatedEntity<T extends Entity>(id: number, params?: GetEntityArgs): Promise<T> {
+   async getDuplicatedEntity<T extends Entity>(id: EntityId, params?: GetEntityArgs): Promise<T> {
       const entity = await this.api.getEdit(id, params?.url);
       const duplicatedEntity = (await this.api.saveAndNew(entity)) as unknown as T;
 
@@ -263,7 +264,7 @@ export class EntityService<STATE extends CommonState = CommonState> implements I
    async bulkEdit(
       value: unknown,
       editFields: FieldSchema[],
-      selections: number[],
+      selections: EntityId[],
       entityName: string
    ): Promise<void> {
       const valueDto = validateAndNormalizeEditDto(value, editFields);
@@ -287,7 +288,7 @@ export class EntityService<STATE extends CommonState = CommonState> implements I
       return await this.api.upsert<T>(value);
    }
 
-   async deleteEntity(id: number) {
+   async deleteEntity(id: EntityId) {
       await this.api.deleteEntity(id);
       this.store.dispatch((this.slice.actions as any).entityDeleted(id)); // Not necessary, because we refresh the Main panel with GeneralService refresh subject
    }

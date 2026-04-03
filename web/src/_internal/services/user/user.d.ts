@@ -25,7 +25,7 @@ export type Account = {
    createdDate: string;
    email: string;
    firstName: string;
-   id: number;
+   id: number | string;
    imageUrl: string;
    langKey: string;
    lastModifiedBy: string;

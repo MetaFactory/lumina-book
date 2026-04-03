@@ -21,16 +21,18 @@ export type EntityListDto<T extends EntityListItemDto = EntityListItemDto> = {
    pageCount: number;
 };
 
+export type EntityId = number | string;
+
 export type EntityListItemDto = {
    createdOn: string;
    updatedOn: string;
    creator: string;
    updater: string;
-   id: number;
+   id: EntityId;
 };
 
 export type Entity = Record<string, unknown> & {
-   id?: number | null;
+   id?: EntityId | null;
    displayValue?: string;
 };
 

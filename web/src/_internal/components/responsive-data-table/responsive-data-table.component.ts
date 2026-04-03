@@ -8,7 +8,7 @@ import {
    ViewChild
 } from '@angular/core';
 import { EntityService } from '../../services';
-import { Entity, FieldSchema, FormAction, SortOrder } from '../../types';
+import { Entity, EntityId, FieldSchema, FormAction, SortOrder } from '../../types';
 
 @Component({
    selector: 'app-responsive-data-table',
@@ -26,8 +26,8 @@ export class ResponsiveDataTableComponent implements AfterViewInit {
    @Input() width: string | undefined = 'auto';
    @Output() onSelectItem = new EventEmitter<Entity>();
    @Output() onShowMore = new EventEmitter<any>();
-   @Output() selectionChange = new EventEmitter<number[]>();
-   @Output() multiSelectionChange = new EventEmitter<number[]>();
+   @Output() selectionChange = new EventEmitter<EntityId[]>();
+   @Output() multiSelectionChange = new EventEmitter<EntityId[]>();
    @Output() onSort = new EventEmitter<{
       field: string;
       order: SortOrder;

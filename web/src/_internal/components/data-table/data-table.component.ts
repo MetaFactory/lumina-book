@@ -2,7 +2,7 @@ import { Component, EventEmitter, Injector, Input, Output } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core';
 import orderBy from 'lodash.orderby';
 import { EntityService } from '../../services';
-import type { Entity, FieldSchema, FormAction, SortOrder } from '../../types';
+import type { Entity, EntityId, FieldSchema, FormAction, SortOrder } from '../../types';
 import { getFieldSingleRawValue, getFieldTitle, readLocalStorage, toggleValue } from '../../utils';
 
 @Component({
@@ -25,7 +25,7 @@ export class DataTableComponent {
       field: string;
       order: SortOrder;
    }>();
-   @Output() multiSelectionChange = new EventEmitter<number[]>();
+   @Output() multiSelectionChange = new EventEmitter<EntityId[]>();
 
    constructor(
       private translator: TranslateService,
@@ -33,7 +33,7 @@ export class DataTableComponent {
    ) {}
 
    // multi select mode
-   multiSelections: number[] = [];
+   multiSelections: EntityId[] = [];
 
    toggleAllSelection() {
       if (this.multiSelections.length) {
