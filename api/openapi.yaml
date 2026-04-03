@@ -166,6 +166,64 @@ paths:
       tags:
         - User
 
+  /user/{id}:
+    get:
+      operationId: user/get-user
+      summary: Get a user by ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  login:
+                    type: string
+                  firstName:
+                    type: string
+                  lastName:
+                    type: string
+                  email:
+                    type: string
+                  imageUrl:
+                    type: string
+                    nullable: true
+                  activated:
+                    type: boolean
+                  langKey:
+                    type: string
+                  createdBy:
+                    type: string
+                  createdDate:
+                    type: string
+                    format: date-time
+                  lastModifiedBy:
+                    type: string
+                  lastModifiedDate:
+                    type: string
+                    format: date-time
+                  authorities:
+                    type: array
+                    items:
+                      type: string
+        "401":
+          description: Not authenticated
+        "404":
+          description: User not found
+      tags:
+        - User
+
   /account:
     get:
       operationId: account/get-account
