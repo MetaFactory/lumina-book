@@ -2,8 +2,8 @@ import { PathAuthority } from '@common/types';
 
 export const appAuthorities: PathAuthority[] = [
    {
-      path: 'setting/*',
-      authority: 'ADMIN'
+      path: 'user',
+      authority: 'ROLE_ADMIN'
    }
 ].map((item) => ({
    ...item,
