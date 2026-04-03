@@ -3,16 +3,12 @@ import { Router } from '@angular/router';
 import { InitServiceBase, InitServiceContext } from '@common/services';
 import { dynamicForms } from 'src/app';
 import { config } from 'src/config';
-import { IncidentService } from './incident/incident.service';
 
 @Injectable({
    providedIn: 'root'
 })
 export class InitService extends InitServiceBase {
-   constructor(
-      private incidentService: IncidentService,
-      private router: Router
-   ) {
+   constructor(private router: Router) {
       super();
    }
 
@@ -27,17 +23,6 @@ export class InitService extends InitServiceBase {
             languages: config.languages,
             accountUrlMobile: config.accountUrlMobile
          });
-
-         const url = this.router.url ?? '';
-         const isErrorPage =
-            url.startsWith('/login-failed') ||
-            url.startsWith('/general-error') ||
-            location.pathname.startsWith('/login-failed') ||
-            location.pathname.startsWith('/general-error');
-
-         if (!isErrorPage) {
-            await this.incidentService.startPolling();
-         }
       } catch (ex) {
          console.error(ex); // Handling error is needed
       }

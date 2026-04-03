@@ -5,7 +5,6 @@ import {
    GENERAL_ERROR_PAGE,
    LOGIN_CALLBACK_PAGE,
    LOGIN_FAILED_PAGE,
-   SERVER_AUTHORIZE_URL,
    STORAGE_KEY_TOKEN
 } from '../../constants';
 import { PathAuthority } from '../../types';
@@ -101,14 +100,13 @@ export class UserService {
       }
 
       if (!this.account && window.location.pathname !== GENERAL_ERROR_PAGE) {
-         const token = localStorage.getItem('token');
-         if (!token) {
-            await this.redirectToAuthorizeUrl();
+         try {
+            this.account = await this.userApi.getAccount();
+            storeService.dispatch(accountSet(this.account));
+         } catch {
+            // 401 is handled by HttpErrorInterceptor → redirects to OAuth2 login
             return false;
          }
-
-         this.account = await this.userApi.getAccount();
-         storeService.dispatch(accountSet(this.account));
       }
 
       return true;
@@ -156,33 +154,6 @@ export class UserService {
             return false;
          }
       }
-   }
-
-   private async redirectToAuthorizeUrl() {
-      // Fire-and-forget: we want to redirect the browser ASAP.
-      try {
-         const { authorizeUrl } = await this.userApi.request<{ authorizeUrl?: string }>(
-            `${SERVER_AUTHORIZE_URL}?forceLogin=true`
-         );
-
-         if (authorizeUrl && typeof authorizeUrl === 'string') {
-            // Show a simple full-page message while waiting to redirect
-            if (document && document.body) {
-               document.body.innerHTML =
-                  '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;font-size:18px;">Redirecting to the login page ...</div>';
-            }
-
-            setTimeout(() => {
-               window.location.assign(authorizeUrl);
-            }, 1000);
-            return;
-         }
-      } catch (error) {
-         console.error('HttpErrorInterceptor: failed to resolve authorize URL', error);
-      }
-
-      // Fallback: if backend didn't return a URL, at least navigate to the endpoint.
-      window.location.assign(GENERAL_ERROR_PAGE);
    }
 
    checkPathAuthority(appAuthorities: PathAuthority[], path?: string) {
