@@ -74,5 +74,5 @@ export const userEntityViewSchema = normalizeEntityPanelSchema({
    serviceName: 'user',
    fields: fields,
    canEdit: false,
-   canDelete: false
+   canDelete: true
 });

@@ -85,6 +85,16 @@ public class UserService {
         return userRepository.findOneWithAuthoritiesById(id);
     }
 
+    public void deleteUser(String id) {
+        userRepository
+            .findById(id)
+            .ifPresent(user -> {
+                userRepository.delete(user);
+                this.clearUserCaches(user);
+                LOG.debug("Deleted User: {}", user);
+            });
+    }
+
     @Transactional(readOnly = true)
     public Optional<User> getUserWithAuthoritiesByLogin(String login) {
         return userRepository.findOneWithAuthoritiesByLogin(login);

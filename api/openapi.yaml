@@ -224,6 +224,25 @@ paths:
       tags:
         - User
 
+    delete:
+      operationId: user/delete-user
+      summary: Delete a user by ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: User deleted
+        "401":
+          description: Not authenticated
+      tags:
+        - User
+
   /account:
     get:
       operationId: account/get-account
