@@ -8,6 +8,13 @@ const hostname = window.location.hostname;
 const apiBaseUrl = window.location.origin;
 const production = !['localhost', '127.0.0.1', '0.0.0.0'].includes(hostname);
 
+const urlParams = new URLSearchParams(window.location.search);
+const tokenFromUrl = urlParams.get('token');
+if (tokenFromUrl) {
+   localStorage.setItem('token', tokenFromUrl);
+   window.history.replaceState({}, '', window.location.pathname);
+}
+
 export const config = {
    ...defaultCommonConfig,
 
@@ -21,6 +28,7 @@ export const config = {
    api: {
       ...defaultCommonConfig.api,
       baseUrl: apiBaseUrl,
+      token: tokenFromUrl || readLocalStorage('token', ''),
       mocked: production ? [] : mocked
    },
 

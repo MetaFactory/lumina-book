@@ -1,9 +1,8 @@
 package com.metafactory.luminabook.web.rest;
 
-import com.metafactory.luminabook.service.UserService;
-import com.metafactory.luminabook.service.dto.AdminUserDTO;
 import java.io.Serial;
 import java.security.Principal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,6 +11,9 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.metafactory.luminabook.service.UserService;
+import com.metafactory.luminabook.service.dto.AdminUserDTO;
 
 /**
  * REST controller for managing the current user's account.

@@ -87,3 +87,61 @@ paths:
       responses:
         "201":
           description: Booking confirmed
+
+  /account:
+    get:
+      operationId: account/get-account
+      summary: Get the current user's account
+      security:
+        - bearerAuth: []
+      parameters: []
+      responses:
+        "200":
+          description: The authenticated user's account
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - id
+                  - login
+                  - email
+                  - activated
+                properties:
+                  id:
+                    type: string
+                  login:
+                    type: string
+                  firstName:
+                    type: string
+                  lastName:
+                    type: string
+                  email:
+                    type: string
+                  imageUrl:
+                    type: string
+                    nullable: true
+                  activated:
+                    type: boolean
+                  langKey:
+                    type: string
+                  createdBy:
+                    type: string
+                  createdDate:
+                    type: string
+                    format: date-time
+                  lastModifiedBy:
+                    type: string
+                  lastModifiedDate:
+                    type: string
+                    format: date-time
+                  authorities:
+                    type: array
+                    items:
+                      type: string
+        "401":
+          description: Not authenticated
+        "500":
+          description: User could not be resolved from authentication
+      tags:
+        - Account

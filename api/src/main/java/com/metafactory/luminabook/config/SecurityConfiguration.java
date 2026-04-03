@@ -23,10 +23,13 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
@@ -63,7 +66,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) {
+    public SecurityFilterChain filterChain(HttpSecurity http, OAuth2AuthorizedClientRepository authorizedClientRepository) {
         http
             .cors(withDefaults())
             .csrf(csrf ->
@@ -94,7 +97,20 @@ public class SecurityConfiguration {
                 )
             )
             .oauth2Login(oauth2 -> oauth2
-                .defaultSuccessUrl(applicationProperties.getFrontendUrl(), true)
+                .successHandler((request, response, authentication) -> {
+                    String redirectUrl = applicationProperties.getFrontendUrl();
+                    if (authentication instanceof OAuth2AuthenticationToken oauthToken) {
+                        OAuth2AuthorizedClient client = authorizedClientRepository.loadAuthorizedClient(
+                            oauthToken.getAuthorizedClientRegistrationId(),
+                            oauthToken,
+                            request
+                        );
+                        if (client != null && client.getAccessToken() != null) {
+                            redirectUrl += "?token=" + client.getAccessToken().getTokenValue();
+                        }
+                    }
+                    response.sendRedirect(redirectUrl);
+                })
                 .userInfoEndpoint(userInfo -> userInfo.oidcUserService(this.oidcUserService()))
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(authenticationConverter())))

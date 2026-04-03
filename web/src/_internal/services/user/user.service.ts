@@ -101,6 +101,12 @@ export class UserService {
 
       if (!this.account && window.location.pathname !== GENERAL_ERROR_PAGE) {
          try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+               window.location.assign('/oauth2/authorization/oidc');
+               return false;
+            }
+
             this.account = await this.userApi.getAccount();
             storeService.dispatch(accountSet(this.account));
          } catch {
