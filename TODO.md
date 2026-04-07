@@ -11,5 +11,16 @@
 - [x] Login (with keycloak)
 - [x] Create users form
 - [x] Create /api/user endpoint
-- [.] Allow user ids to be string
-- [ ] Create a template tag
+- [x] Allow user ids to be string
+
+## Summary
+
+Some developers already have some ideas how to get benefits of AI mostly through ChatGPT, Gemini, Grok, etc. The next step of using Coding Agents, like Cursor or Claude Code.
+LuminaBook, an AI-First Scheduling platform is a test case project to demonstrate how to do it. We can use this project for learning more internally as well as a proof of concept for our clients. Also we want to use this project to demonstrate how to bootstrap a project using AI.
+We use Java, JHipster, Spring Boot, Keycloak, Angular, PostgreSQL, Cloud Native design, AWS
+
+## Next steps
+
+- [ ] Fully CRUD
+- [ ] Instruction Docs
+- [ ] Using Claude Code
