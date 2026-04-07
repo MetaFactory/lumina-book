@@ -20,4 +20,9 @@ Built as a demonstration of end-to-end AI-assisted software development.
 
 Tech stack: JHipster Java (backend), Spring Boot, TypeScript, Angular (fronend), PostgreSQL
 
+## Developer Docs
+
+- **Add a new schema-driven form/page**: `assets/docs/adding-dynamic-forms.md`
+- **Entity CRUD operations - API contracts**: `assets/docs/entity-crud-apis.md`
+
 ⭐ Star us if you're exploring AI-assisted development or modern scheduling tools!
