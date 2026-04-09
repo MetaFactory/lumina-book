@@ -27,3 +27,13 @@ We use Java, JHipster, Spring Boot, Keycloak, Angular, PostgreSQL, Cloud Native 
 - [x] Fully CRUD
 - [x] Using IntelliJ
 - [x] Using Claude Code
+- [x] Create an Angular dashboard page
+
+## Presentation
+
+- Prompt to Code Sample (Bookings)
+- Introduction to AI-First Development (Diagram)
+- Definitions (Glossary)
+- AI Coding Tools introduction (Claude Code, Cursor, IntelliJ Chat, GitHub Copilot, Codex)
+- AI Models (ChatGPT, Gemini, Grok, Calude.)
+- Test Case: LuminaBook
