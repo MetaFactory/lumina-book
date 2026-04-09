@@ -21,9 +21,9 @@ We use Java, JHipster, Spring Boot, Keycloak, Angular, PostgreSQL, Cloud Native 
 
 ## Next steps
 
-- [ ] Create CRUD for Booking page
-- [ ] Create doc `adding-dynamic-forms`
-- [ ] Create doc `entity-crud-apis`
-- [ ] Fully CRUD
-- [ ] Instruction Docs
-- [ ] Using Claude Code
+- [x] Create CRUD for Booking page
+- [x] Create doc `adding-dynamic-forms`
+- [x] Create doc `entity-crud-apis`
+- [x] Fully CRUD
+- [x] Using IntelliJ
+- [x] Using Claude Code
