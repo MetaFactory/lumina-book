@@ -15,7 +15,7 @@ export const routes: Routes = [
       path: '',
       component: LayoutComponent,
       children: [
-         { path: '', redirectTo: 'incident', pathMatch: 'full' },
+         { path: '', redirectTo: 'booking', pathMatch: 'full' },
 
          { path: 'account', component: AccountComponent },
 

@@ -31,9 +31,11 @@ We use Java, JHipster, Spring Boot, Keycloak, Angular, PostgreSQL, Cloud Native 
 
 ## Presentation
 
-- Prompt to Code Sample (Bookings)
 - Introduction to AI-First Development (Diagram)
-- Definitions (Glossary)
+- Glossary
+  - Vibe Coding
+  - Agentic AI
 - AI Coding Tools introduction (Claude Code, Cursor, IntelliJ Chat, GitHub Copilot, Codex)
 - AI Models (ChatGPT, Gemini, Grok, Calude.)
+- Prompt to Code Sample (Bookings)
 - Test Case: LuminaBook

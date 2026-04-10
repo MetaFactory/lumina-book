@@ -1,6 +1,7 @@
 package com.metafactory.luminabook.repository;
 
 import com.metafactory.luminabook.domain.Booking;
+import com.metafactory.luminabook.domain.enumeration.BookingStatus;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -37,4 +38,26 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     @Query("select booking from Booking booking left join fetch booking.bookingPage where booking.id =:id")
     Optional<Booking> findOneWithToOneRelationships(@Param("id") Long id);
+
+    @Query(
+        value = "select booking from Booking booking left join fetch booking.bookingPage where booking.status = :status",
+        countQuery = "select count(booking) from Booking booking where booking.status = :status"
+    )
+    Page<Booking> findByStatus(@Param("status") BookingStatus status, Pageable pageable);
+
+    @Query(
+        value = "select booking from Booking booking left join fetch booking.bookingPage where booking.bookingPage.id = :bookingPageId",
+        countQuery = "select count(booking) from Booking booking where booking.bookingPage.id = :bookingPageId"
+    )
+    Page<Booking> findByBookingPageId(@Param("bookingPageId") Long bookingPageId, Pageable pageable);
+
+    @Query(
+        value = "select booking from Booking booking left join fetch booking.bookingPage where booking.status = :status and booking.bookingPage.id = :bookingPageId",
+        countQuery = "select count(booking) from Booking booking where booking.status = :status and booking.bookingPage.id = :bookingPageId"
+    )
+    Page<Booking> findByStatusAndBookingPageId(
+        @Param("status") BookingStatus status,
+        @Param("bookingPageId") Long bookingPageId,
+        Pageable pageable
+    );
 }

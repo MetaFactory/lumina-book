@@ -6,6 +6,9 @@
    "change-password": "Change Password",
    "preferences": "Preferences",
    "language": "Language",
-   "logout": "Logout"
+   "logout": "Logout",
 
+   "Status.PENDING": "Pending",
+   "Status.CONFIRMED": "Confirmed",
+   "Status.CANCELLED": "Cancelled"
 }
